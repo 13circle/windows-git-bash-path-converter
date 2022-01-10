@@ -37,11 +37,34 @@ void win_to_gb(char *win_path) {
 }
 
 void gb_to_win(char *gb_path) {
+  char *token, *win_path;
+
   if (!gb_path) {
     return;
   }
 
-  printf("%s \n", gb_path);
+  if (gb_path[1] == ':') {
+    printf("%s \n", gb_path);
+    return;
+  }
+
+  win_path = malloc(sizeof(char) * (strlen(gb_path) + 1));
+
+  strcpy(win_path, "");
+  token = strtok(gb_path, "/");
+  token[0] = toupper(token[0]);
+  strcat(win_path, token);
+  strcat(win_path, ":\\");
+  token = strtok(NULL, "/");
+  while (token) {
+    strcat(win_path, token);
+    strcat(win_path, "\\");
+    token = strtok(NULL, "/");
+  }
+
+  printf("%s \n", win_path);
+
+  free(win_path);
 }
 
 int main(int argc, char **argv) {
