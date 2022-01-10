@@ -1,4 +1,4 @@
-# windows-git-bash-path-conversion
+# windows-git-bash-path-converter
 
 ## Motivation
 Made this because it was so mad to convert path between Windows and Git Bash
